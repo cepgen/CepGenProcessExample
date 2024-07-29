@@ -37,6 +37,8 @@ public:
         value_(steer<double>("value")),  // example on how to steer a parameter from user configuration
         flag_(steer<int>("flag")) {}
 
+  proc::ProcessPtr clone() const override { return proc::ProcessPtr(new DummyProcess(*this)); }
+
   static ParametersDescription description() {
     // This static member allows to generate a human- and machine-readable description of this algorithm/process ;
     // for instance, switches and flags can be documented using one of the DocumentationGenerator objects to
