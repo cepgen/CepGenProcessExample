@@ -21,7 +21,6 @@ jobs:
     - name: 'Download CepGen artifact'
       uses: dawidd6/action-download-artifact@v3
       with:
-        github_token: ${{ secrets.GH_API_TOKEN }}
         workflow: build.yml
         workflow_conclusion: success
         name: build-env
@@ -32,10 +31,9 @@ jobs:
     - name: 'Configure the build'
       run: |
         git config --global --add safe.directory '*'
-        cmake -GNinja -B ${{ github.workspace }}/build -DPROCESS_NAME=${{ env.PROCESS_NAME }} -DGH_API_TOKEN=${{ secrets.GH_API_TOKEN }}
+        cmake -GNinja -B ${{ github.workspace }}/build -DPROCESS_NAME=${{ env.PROCESS_NAME }}
     - name: Build
       run: cmake --build ${{ github.workspace }}/build
-
     - name: Test
       working-directory: ${{ github.workspace }}/build
       run: |
