@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: 'laufor/ci-images:cepgen-fedora39'
-      options: -v ${{ github.workspace }}:/Documentation
+      options: -v ${{ github.workspace }}:/Example
     steps:
     - uses: actions/checkout@v4
     - name: 'Download CepGen artifact'
@@ -31,11 +31,11 @@ jobs:
     - name: 'Configure the build'
       run: |
         git config --global --add safe.directory '*'
-        cmake -GNinja -B ${{ github.workspace }}/build -DPROCESS_NAME=${{ env.PROCESS_NAME }}
+        cmake -GNinja -B /Example/build -DPROCESS_NAME=${{ env.PROCESS_NAME }}
     - name: Build
-      run: cmake --build ${{ github.workspace }}/build
+      run: cmake --build /Example/build
     - name: Test
-      working-directory: ${{ github.workspace }}/build
+      working-directory: /Example/build
       run: |
         ${{ env.CEPGEN_PATH }}/bin/cepgen -a lib${{ env.PROCESS_NAME }}.so -i cards/dummy_collfactor_cfg.py
         ${{ env.CEPGEN_PATH }}/bin/cepgen -a lib${{ env.PROCESS_NAME }}.so -i cards/dummy_ktfactor_cfg.py
