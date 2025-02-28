@@ -59,8 +59,8 @@ private:
   void prepareFactorisedPhaseSpace() override {
     // This method allows you to prepare the matrix element computation with the kinematics information
     // retrieved from the `kin_` member inherited from the cepgen::proc::Process base object.
-    const auto& cs_prop = PDG::get()(psgen_->central().at(0));
-    CG_DEBUG("DummyProcess:prepare") << "Produced particles: " << cs_prop.descr << " ("
+    const auto& cs_prop = PDG::get()(phase_space_generator_->central().at(0));
+    CG_DEBUG("DummyProcess:prepare") << "Produced particles: " << cs_prop.description << " ("
                                      << "mass = " << cs_prop.mass << " GeV.";
   }
   double computeFactorisedMatrixElement() override {
