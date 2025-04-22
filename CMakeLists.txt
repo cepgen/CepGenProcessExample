@@ -6,7 +6,7 @@ endif()
 project(${PROCESS_NAME})
 
 set(CEPGEN_PATH ${CEPGEN_PATH} $ENV{CEPGEN_PATH})
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CEPGEN_PATH}/cmake)
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CEPGEN_PATH}/share/cmake ${CEPGEN_PATH}/cmake)
 
 find_package(CepGen REQUIRED)
 
